@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Therapio</title>
+
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <!--  jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+
+    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+  
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" integrity="sha384-awusxf8AUojygHf2+joICySzB780jVvQaVCAt1clU3QsyAitLGul28Qxb2r1e5g+" crossorigin="anonymous">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/i18n/defaults-*.min.js"></script>
+
+
+    <script>
+    $(function(){
+		$.ajax({
+			url : '/get_users',
+			type : 'GET',
+
+            success: function(res){
+                var items = JSON.parse(res);
+                $.each(items, function (i, item) {
+                    $('#s').append($('<option>', {
+                    value: item.IdUniq,
+                    text : item.Name
+                }));
+                });
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+
+        $(document).ready( function() {
+        $('#btn_dash').click(function() {
+           var userid = document.getElementById("s").value;
+            window.location='/dashboard/'+ userid;
+            $('#koo').append('<div id="test">'+userid+'</div>');
+           $.post(
+              "/getUID",
+              { userid: userid }
+           ).done(function (reply) {
+              $('#reply').empty().append(reply);
+           });
+        });
+      });
+
+</script>
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+
+                    <li role="presentation" class="active"><a href="#">Home</a>
+                    </li>
+                    <li role="presentation"><a href="showSignIn">Login</a>
+                    </li>
+                    <li role="presentation"><a href="showSignUp">Sign Up</a>
+            {% if session_user_name %}
+                    <li role="presentation"><a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Therapio</h3>
+        </div>
+        </div>
+
+        <div class="jumbotron">
+            <img src="../static/drawable/therapioblue250.png">
+            <br>
+            <br>
+            <p class="text-center" style="font-family:courier; font-size: small">Detecting the likelihood of developing depression
+                <br> through patient phone calls and activity analysis.</p>
+            <br>
+            {% if session_user_name %}
+                <h2>Hello Doctor <strong>{{ session_user_name }}</strong> </h2>
+                <br>
+                <br>
+                <form action="">
+                <h3><strong>Please chose your patient !</strong></h3>
+                <select class="selectpicker" data-live-search="true" data-width="auto"></select>
+                <select id="s"></select>                
+                  </form>
+                <br>
+                <br>
+                <br>
+                <p><a class="btn btn-lg btn-success" href="showSignIn" role="button" id="btn_dash">Dashboard</a></p>
+            {% endif %}
+        </div>
+
+    <div class="container">
+        <div class="row marketing">
+
+
+            <div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+
+    <!-- Form code begins -->
+<!--     <form method="post">
+  <div class="form-group"> Date input
+    <label class="control-label" for="date">Date</label>
+    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+  </div>
+  <div class="form-group"> Submit button
+    <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+  </div>
+ </form> -->
+     <!-- Form code ends -->
+
+    </div>
+  </div>
+ </div>
+</div>
+
+
+        <div class="col-lg-6">
+        <div class="list-group">
+        </div>
+        </div>
+
+<!--                 <select id="s">
+</selec t>-->
+
+
+
+<!--            <button id="btn_dash" class="btn-primary">dashboard</button>
+             -->            <div id="koo"></div>
+
+        <footer class="footer">
+            <p>&copy; Therapio 2016</p>
+        </footer>
+
+    </div>
+        </div>
+</body>
+
+</html>

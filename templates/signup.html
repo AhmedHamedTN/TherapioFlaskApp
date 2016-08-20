@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Therapio</title>
+ 
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" integrity="sha384-awusxf8AUojygHf2+joICySzB780jVvQaVCAt1clU3QsyAitLGul28Qxb2r1e5g+" crossorigin="anonymous">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="showSignIn">Login</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Therapio</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <img src="../static/drawable/therapioblue250.png">
+          <br>
+            <blockquote>
+                <p class="text-center" style="font-family:courier; font-size: small">Detecting the likelihood of developing depression
+                <br> through patient phone calls and activity analysis.</p>
+            </blockquote>
+
+        <form class="form-signin" method="POST">
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <input type="Submit" value="Sign up" class="btn btn-default btn-sm">
+<!--   <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>  -->      
+        </form>
+        {#  {% if error %}
+			<div class="alert alert-dismissible alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <p class="error"><strong>Error:</strong>{{error}}</p>
+            </div>
+          {% endif %}#}
+      </div>
+ 
+       
+ 
+      <footer class="footer">
+        <p>&copy; Theralytics 2016</p>
+      </footer>
+    </div>
+  </body>
+</html>
