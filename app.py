@@ -38,7 +38,7 @@ from sklearn.cross_validation import train_test_split
 
 app = Flask(__name__)
 app.debug = True
-app.secret_key = 'quiet!'
+app.secret_key = '*******'
 
 
 myPath = ""
@@ -224,12 +224,12 @@ def extractCSV():
         print " Android must Have invoked this CSV shit"
 
         # Ftp connection
-        FtpHostName = "anis.tunisia-webhosting.com"
-        FtpUser = "ahmed@anis.tunisia-webhosting.com"
-        FtpPassword = "ahmedahmed"
+        FtpHostName = "*************"
+        FtpUser = "***************"
+        FtpPassword = "***********"
         ftp = FTP(FtpHostName)
         ftp.login(FtpUser, FtpPassword)
-        path = "http://www.anis.tunisia-webhosting.com/anis.tunisia-webhosting.com/ahmed"
+        path = "*********************"
 
     ########################################
     ########################################
@@ -359,12 +359,12 @@ def extractAudio():
         print " Android must Have invoked this"
 
         # Ftp connection
-        FtpHostName = "anis.tunisia-webhosting.com"
-        FtpUser = "ahmed@anis.tunisia-webhosting.com"
-        FtpPassword = "ahmedahmed"
+        FtpHostName = "****************"
+        FtpUser = "*********************"
+        FtpPassword = "***************"
         ftp = FTP(FtpHostName)
         ftp.login(FtpUser, FtpPassword)
-        path = "http://www.anis.tunisia-webhosting.com/anis.tunisia-webhosting.com/ahmed"
+        path = "************************"
 
     ########################################
     ########################################
@@ -531,12 +531,12 @@ def dashboard(userid):
     phoneCallFtrFinal = pd.DataFrame()
 
     # Ftp connection
-    FtpHostName = "anis.tunisia-webhosting.com"
-    FtpUser = "ahmed@anis.tunisia-webhosting.com"
-    FtpPassword = "ahmedahmed"
+    FtpHostName = "**********************"
+    FtpUser = "***********************"
+    FtpPassword = "******************"
     ftp = FTP(FtpHostName)
     ftp.login(FtpUser, FtpPassword)
-    path = "http://www.anis.tunisia-webhosting.com/anis.tunisia-webhosting.com/ahmed"
+    path = "****************************"
 
     # forms
     form = DateForm()
